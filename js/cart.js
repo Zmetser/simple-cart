@@ -1,19 +1,23 @@
+import { cart } from './app.js';
 
-class Cart{
-    constructor(qty){
+class Cart {
+    constructor(qty) {
         this.products = [];
-    }  
-    addToCart(id){
+    }
+    addToCart(id) {
         const cartItem = {
             id,
-            qty: 1
+            qty: 1,
         }
-        const prod = this.products.find( prod => prod.id === cartItem.id )
+        const prod = this.products.find(prod => prod.id === cartItem.id)
         if (!prod) {
             this.products.push(cartItem)
         } else {
-            prod.qty ++
-        } 
+            prod.qty++
+        }
+    }
+    getCart() {
+        return this.products;
     }
 }
 

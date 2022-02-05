@@ -7,8 +7,4 @@ function getProductId(element) {
     return id;
 }
 
-
-
-
-
 export { getProductId }
