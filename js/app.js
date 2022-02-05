@@ -23,12 +23,13 @@ btns.forEach((button) => {
         cart.addToCart(id)
         console.log(cart)
         console.log(getProductById(id))
-        renderCart(id);
+        renderCart();
+        renderTotalPrice()
     })
 })
 
 
-function renderCart(id) {
+function renderCart() {
     const mycart = document.querySelector("#mycart");
     mycart.innerHTML = "";
     cart.products.forEach(prod => {
@@ -50,4 +51,17 @@ function renderCart(id) {
         newProduct.innerHTML = template;
         mycart.append(newProduct);
     })
+}
+
+
+
+function renderTotalPrice() {
+    const priceTag = document.querySelector("#totalp")
+    priceTag.innerHTML = ""
+    let sum = 0;
+    cart.products.forEach(prod => {
+        const myprod = getProductById(prod.id)
+        sum +=  Number(myprod.price) * Number(prod.qty);
+    })
+    priceTag.innerHTML += `${sum}$`;
 }
