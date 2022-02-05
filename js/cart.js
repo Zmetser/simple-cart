@@ -10,9 +10,10 @@ class Cart{
         }
         const prod = this.products.find( prod => prod.id === cartItem.id )
         if (!prod) {
-            this.products.push(cartItem)
+            this.products.push(cartItem);
+           
         } else {
-            prod.qty ++
+            prod.qty ++;
         } 
     }
 }
