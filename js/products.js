@@ -18,7 +18,7 @@ function pushProduct(id) {
     const cartEl = document.querySelector('.cart');
     //console.log(cartEl);
     cartEl.innerHTML += `<div class="row main align-items-center">
-    <div class="col-2"><img class="img-fluid" src="./images/${product.image}"></div>
+    <div class="col-2"><img class="img-fluid" src="./images/${product.image}.jpeg"></div>
     <div class="col">
         <div class="row">${product.name}</div>
     </div>
