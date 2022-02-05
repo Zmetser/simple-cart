@@ -16,8 +16,8 @@ function addToDomCart (element, cart, clickevent){
     const product = cart.getItemById(element)
     const cartDiv = document.querySelector('.cart');
     const cartDivs = document.querySelectorAll('.cart div');
-    const productDivs = getDivById(clickevent);
-    console.log(productDivs)
+    /* const productDivs = getDivById(clickevent);
+    console.log(productDivs) */
     const cartItem = Array.from(cartDivs).find(elem => elem.innerHTML === element.name);
     if(cartItem){
         const itemValue = getDivByName(cartItem).querySelector('input')
@@ -32,13 +32,13 @@ function addToDomCart (element, cart, clickevent){
                     <div class="col">
                         <div class="row">${element.name}</div>
                     </div>
-                    <div class="col"><input type="number" value="1"></div>
+                    <div class="col"><input type="number" value="${product.qty}"></div>
                     <div class="col">$${element.price} <a href="" class="close">&#10005;</a></div>
                 </div>
             </div>
             `;
     }
     
-    return cartDiv
+    return 
 }
 export { toggleFavorite, getProductById, addToDomCart }
