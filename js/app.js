@@ -14,4 +14,8 @@ fav.forEach(wishI => wishI.addEventListener('click', (event) => {
     product.isFavourite = !product.isFavourite
 
     console.log(product)
+
+    event.target.classList.toggle("fa-heart", product.isFavourite)
+    event.target.classList.toggle("fa-heart-o", !product.isFavourite)
+
 }));
