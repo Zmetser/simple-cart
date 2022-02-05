@@ -19,6 +19,7 @@ const cart = new Cart();
 btns.forEach((button)=>{
     button.addEventListener('click',(e)=>{
         e.preventDefault()
+        console.log(e.target);
         const id = getProductId(e.target);
         cart.addToCart(id)
         console.log(cart)
@@ -32,7 +33,7 @@ btns.forEach((button)=>{
                           <div class="row">${getProductById(id).name}</div>
                       </div>
                       <div class="col"><input type="number" value="1"></div>
-                      <div class="col">${getProductById(id).price}$ <a href="" class="close">&#10005;</a></div>
+                      <div class="col">$${getProductById(id).price} <a href="" class="close">&#10005;</a></div>
                   </div>`
     })
 })
