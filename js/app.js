@@ -26,17 +26,17 @@ btns.forEach((button) => {
 
         console.log(cart);
         console.log(product);
-        console.log(cartElement);
 
-        cartElement.innerHTML += `
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="./images/${product.image}"></div>
-                                <div class="col">
-                                    <div class="row">${product.name}</div>
-                                </div>
-                                <div class="col"><input type="number" value=""></div>
-                            <div class="col">$${product.price} <a href="" class="close">&#10005;</a></div>
-                        </div>
-                        `;
+            cartElement.innerHTML += `
+                            <div class="row main align-items-center">
+                                <div class="col-2"><img class="img-fluid" src="./images/${product.image}"></div>
+                                    <div class="col">
+                                        <div class="row">${product.name}</div>
+                                    </div>
+                                    <div class="col"><input type="number" value=""></div>
+                                <div class="col">$${product.price} <a href="" class="close">&#10005;</a></div>
+                            </div>
+                            `;
+
     });
 });
