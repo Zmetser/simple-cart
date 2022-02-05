@@ -15,6 +15,10 @@ class Cart{
             prod.qty ++
         } 
     }
+    getItemById(product){
+        const prod = this.products.find(element => element.id === product.id);
+        return prod
+    }
 }
 
 export { Cart }
