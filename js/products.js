@@ -10,7 +10,7 @@ function toggleFavorite(id) {
 function getProductById(id) {
     
     const product = data.find(product => product.id == id)
-    return product
+    return product;
 }
 
 export { toggleFavorite, getProductById }
