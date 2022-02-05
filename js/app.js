@@ -1,5 +1,5 @@
 import { getProductId } from './auxilliary.js';
-import { toggleFavorite, getProductById } from './products.js';
+import { toggleFavorite, getProductById, pushProduct } from './products.js';
 import { Cart } from './cart.js';
 
 
@@ -21,7 +21,8 @@ btns.forEach((button)=>{
         e.preventDefault()
         const id = getProductId(e.target);
         cart.addToCart(id)
-        console.log(cart)
-        console.log(getProductById(id))
+        //console.log(cart)
+        //console.log(getProductById(id))
+        pushProduct(id);
     })
 })
