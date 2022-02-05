@@ -1,21 +1,13 @@
-import data from './data.js';
+import { getProductId } from './auxilliary.js';
+import { toggleFavorite } from './products.js';
 
 const fav = document.querySelectorAll('.wish-icon');
+
 fav.forEach(wishI => wishI.addEventListener('click', (event) => {
-    let currentElement = event.target;
-    while (!currentElement.dataset.productId) {
-        currentElement = currentElement.parentElement;
-    };
-    const id = currentElement.dataset.productId;
-    console.log(id);
-    const product = data.find(element => element.id === id);
+    const id = getProductId(event.target);
+    const isFavProduct = toggleFavorite(id);
 
-    // product.isFavourite = product.isFavourite? false:true;
-    product.isFavourite = !product.isFavourite
-
-    console.log(product)
-
-    event.target.classList.toggle("fa-heart", product.isFavourite)
-    event.target.classList.toggle("fa-heart-o", !product.isFavourite)
+    event.target.classList.toggle("fa-heart", isFavProduct)
+    event.target.classList.toggle("fa-heart-o", !isFavProduct)
 
 }));
