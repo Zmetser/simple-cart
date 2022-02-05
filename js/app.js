@@ -24,9 +24,9 @@ btns.forEach((button) => {
         console.log(cart)
         console.log(getProductById(id))
         renderCart(id);
+        updateTotalPrice()
     })
 })
-
 
 function renderCart(id) {
     const mycart = document.querySelector("#mycart");
@@ -50,4 +50,12 @@ function renderCart(id) {
         newProduct.innerHTML = template;
         mycart.append(newProduct);
     })
+}
+
+function updateTotalPrice() {
+  const totalPriceElements = document.querySelectorAll('.js_total-price');
+  const totalPrice = cart.getTotalPrice();
+  totalPriceElements.forEach(totalPriceElement => {
+    totalPriceElement.innerHTML = `$${totalPrice}`
+  });
 }
