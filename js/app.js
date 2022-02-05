@@ -9,34 +9,49 @@ fav.forEach((wishI) =>
         const id = getProductId(event.target);
         const isFavProduct = toggleFavorite(id);
 
-        event.target.classList.toggle("fa-heart", isFavProduct);
-        event.target.classList.toggle("fa-heart-o", !isFavProduct);
-    })
-);
+fav.forEach(wishI => wishI.addEventListener('click', (event) => {
+    const id = getProductId(event.target);
+    const isFavProduct = toggleFavorite(id);
 
-const cartElement = document.querySelector(".cart-element");
-const btns = document.querySelectorAll(".btn");
+    event.target.classList.toggle("fa-heart", isFavProduct)
+    event.target.classList.toggle("fa-heart-o", !isFavProduct)
+
+}));
+
+const btns = document.querySelectorAll('.btn');
 const cart = new Cart();
 btns.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        e.preventDefault();
+    button.addEventListener('click', (e) => {
+        e.preventDefault()
         const id = getProductId(e.target);
-        let product = getProductById(id);
-        cart.addToCart(id);
+        cart.addToCart(id)
+        console.log(cart)
+        console.log(getProductById(id))
+        renderCart(id);
+    })
+})
 
-        console.log(cart);
-        console.log(product);
 
-            cartElement.innerHTML += `
-                            <div class="row main align-items-center">
-                                <div class="col-2"><img class="img-fluid" src="./images/${product.image}"></div>
-                                    <div class="col">
-                                        <div class="row">${product.name}</div>
-                                    </div>
-                                    <div class="col"><input type="number" value=""></div>
-                                <div class="col">$${product.price} <a href="" class="close">&#10005;</a></div>
-                            </div>
-                            `;
-
-    });
-});
+function renderCart(id) {
+    const mycart = document.querySelector("#mycart");
+    mycart.innerHTML = "";
+    cart.products.forEach(prod => {
+        const myprod = getProductById(prod.id)
+        console.log(prod)
+        const newProduct = document.createElement("div");
+        const cartDiv = document.querySelector(".col-md-8.cart");
+        const template = `
+    <div class="row border-top border-bottom">
+                  <div class="row main align-items-center">
+                      <div class="col-2"><img class="img-fluid" src="./images/${myprod.image}"></div>
+                      <div class="col">
+                          <div class="row">${myprod.name}</div>
+                      </div>
+                      <div class="col"><input type="number" value="${prod.qty}"></div>
+                      <div class="col">${myprod.price} <a href="" class="close">&#10005;</a></div>
+                  </div>
+              </div>`
+        newProduct.innerHTML = template;
+        mycart.append(newProduct);
+    })
+}
