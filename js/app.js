@@ -44,11 +44,19 @@ function renderCart(id) {
                           <div class="row">${myprod.name}</div>
                       </div>
                       <div class="col"><input type="number" value="${prod.qty}"></div>
-                      <div class="col">${myprod.price} <a href="" class="close">&#10005;</a></div>
+                      <div class="col">${myprod.price} <a href="" data-product-id="${myprod.id}" class="close">&#10005;</a></div>
                   </div>
               </div>`
         newProduct.innerHTML = template;
         mycart.append(newProduct);
+    })
+
+    const xek = mycart.querySelectorAll(".close")
+    xek.forEach(x => {
+        x.addEventListener("click", (e) => {
+            e.preventDefault();
+
+        })
     })
 }
 
@@ -58,4 +66,9 @@ function updateTotalPrice() {
   totalPriceElements.forEach(totalPriceElement => {
     totalPriceElement.innerHTML = `$${totalPrice}`
   });
+}
+
+
+function removeFromCart(){
+    
 }
