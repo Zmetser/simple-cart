@@ -1,4 +1,4 @@
-import { getProductId } from './auxilliary.js';
+import { getProductId, insertToCart } from './auxilliary.js';
 import { toggleFavorite, getProductById } from './products.js';
 import { Cart } from './cart.js';
 
@@ -23,5 +23,8 @@ btns.forEach((button)=>{
         cart.addToCart(id)
         console.log(cart)
         console.log(getProductById(id))
+        insertToCart(id)
     })
 })
+
+export {cart}

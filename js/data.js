@@ -14,7 +14,7 @@ export default [{
     id: 'macbook-air',
     name: 'Macbook Air',
     price: 649,
-    image: 'macbook-air',
+    image: 'macbook-air.jpeg',
   },
   {
     id: 'nikon-dslr',
@@ -26,7 +26,7 @@ export default [{
     id: 'sony-play-station',
     name: 'Sony Play Station',
     price: 269,
-    image: 'play-station',
+    image: 'play-station.jpeg',
   },
   {
     id: 'macbook-pro',
