@@ -1,6 +1,6 @@
 import { getProductId } from './auxilliary.js';
 import { toggleFavorite } from './products.js';
-import { Cart } from './cart.js';
+import { Cart, renderCart } from './cart.js';
 
 const fav = document.querySelectorAll('.wish-icon');
 
@@ -20,6 +20,6 @@ btns.forEach((button)=>{
         e.preventDefault()
         const id = getProductId(e.target);
         cart.addToCart(id)
-        console.log(cart)
+        renderCart(cart)
     })
 })
