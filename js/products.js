@@ -7,4 +7,10 @@ function toggleFavorite(id) {
     return product.isFavourite;
 }
 
-export { toggleFavorite }
+function getProductById(id) {
+    
+    const product = data.find(product => product.id == id)
+    return product
+}
+
+export { toggleFavorite, getProductById }
