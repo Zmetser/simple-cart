@@ -13,13 +13,6 @@ function getProductById(id) {
     return product
 }
 
-function getProduct(id){
-    for(let i=0;i<data.length;++i){
-        if(id===data[i].id){
-            console.log(data[i])
-            return data[i]
-        }
-    }
-}
 
-export { toggleFavorite, getProductById,getProduct }
+
+export { toggleFavorite, getProductById }

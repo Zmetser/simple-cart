@@ -1,5 +1,5 @@
 import { getProductId } from './auxilliary.js';
-import { toggleFavorite, getProductById,getProduct } from './products.js';
+import { toggleFavorite, getProductById } from './products.js';
 import { Cart,addToCartList } from './cart.js';
 
 
