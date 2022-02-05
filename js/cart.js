@@ -15,6 +15,7 @@ class Cart{
             prod.qty ++
         } 
     }
+
 }
 
 export { Cart }
