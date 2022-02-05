@@ -36,7 +36,6 @@ btns.forEach((button) => {
             </div>
         </div>
         `
-
     })
 })
 
