@@ -8,9 +8,18 @@ function toggleFavorite(id) {
 }
 
 function getProductById(id) {
-    
+
     const product = data.find(product => product.id == id)
     return product
 }
 
-export { toggleFavorite, getProductById }
+function getProductId(element) {
+    let currentElement = element;
+    while (!currentElement.dataset.productId) {
+        currentElement = currentElement.parentElement;
+    };
+    const id = currentElement.dataset.productId;
+    return id;
+}
+
+export { toggleFavorite, getProductById, getProductId }

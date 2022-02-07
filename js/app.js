@@ -1,5 +1,4 @@
-import { getProductId } from './auxilliary.js';
-import { toggleFavorite, getProductById } from './products.js';
+import { toggleFavorite, getProductById, getProductId } from './products.js';
 import { Cart } from './cart.js';
 
 
@@ -21,41 +20,78 @@ btns.forEach((button) => {
         e.preventDefault()
         const id = getProductId(e.target);
         cart.addToCart(id)
-        console.log(cart)
-        console.log(getProductById(id))
-        renderCart(id);
-        updateTotalPrice()
+        renderCart();
+        updatePrice();
+        updateNumber();
+
     })
 })
 
-function renderCart(id) {
+function renderCart() {
     const mycart = document.querySelector("#mycart");
     mycart.innerHTML = "";
     cart.products.forEach(prod => {
-        const myprod = getProductById(prod.id)
-        console.log(prod)
-        const newProduct = document.createElement("div");
-        const cartDiv = document.querySelector(".col-md-8.cart");
-        const template = `
-    <div class="row border-top border-bottom">
-                  <div class="row main align-items-center">
-                      <div class="col-2"><img class="img-fluid" src="./images/${myprod.image}"></div>
-                      <div class="col">
-                          <div class="row">${myprod.name}</div>
-                      </div>
-                      <div class="col"><input type="number" value="${prod.qty}"></div>
-                      <div class="col">${myprod.price} <a href="" class="close">&#10005;</a></div>
-                  </div>
-              </div>`
-        newProduct.innerHTML = template;
-        mycart.append(newProduct);
+        let myprod = getProductById(prod.id)
+        mycart.innerHTML += `
+            <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid" src="./images/${myprod.image}"></div>
+                    <div class="col">
+                        <div class="row">${myprod.name}</div>
+                    </div>
+                    <div class="col"><input type="number" value="${prod.qty}" class="nrInput"></div>
+                    <div class="col">${myprod.price} <a href="" class="close">&#10005;</a></div>
+                </div>
+            </div>`
+    })
+    deleteItem()
+    updatePrice();
+    updateNumber();
+    updateItemNrInCart()
+}
+let shippingPrice = 0;
+function updatePrice() {
+    const totalPriceElement = document.querySelector('.js_total-price')
+    const priceElements = document.querySelectorAll('.js_price');
+    const totalPrice = cart.getPrice();
+    priceElements.forEach(priceElements => {
+        priceElements.innerHTML = `$${totalPrice}`
+    });
+    totalPriceElement.innerHTML = `$${totalPrice + shippingPrice}`;
+
+    const shippingMethod = document.querySelector('select');
+    shippingMethod.addEventListener('change', (event) => {
+        shippingPrice = Number(event.target.value);
+        totalPriceElement.innerHTML = `$${totalPrice + shippingPrice}`;
     })
 }
+function updateNumber() {
+    const itemsSumm = document.querySelectorAll('.js_itemsSummary');
+    let itemNrs = cart.getCartQty();
+    itemsSumm.forEach(itemElements => { itemElements.innerHTML = `${itemNrs} items` })
+}
 
-function updateTotalPrice() {
-  const totalPriceElements = document.querySelectorAll('.js_total-price');
-  const totalPrice = cart.getTotalPrice();
-  totalPriceElements.forEach(totalPriceElement => {
-    totalPriceElement.innerHTML = `$${totalPrice}`
-  });
+function updateItemNrInCart() {
+    const nrInputs = document.querySelectorAll('.nrInput');
+    for (let i = 0; i < nrInputs.length; i++) {
+        nrInputs[i].addEventListener('change', (e) => {
+            if (e.target.value < 1) {
+                e.target.value = 1;
+            }
+            cart.products[i].qty = Number(e.target.value);
+
+            renderCart()
+        })
+    }
+}
+
+function deleteItem() {
+    const deleteBtns = document.querySelectorAll('.close');
+    for (let i = 0; i < deleteBtns.length; i++) {
+        deleteBtns[i].addEventListener('click', (event) => {
+            event.preventDefault()
+            cart.deleteCartItem(i);
+            renderCart()
+        })
+    }
 }
